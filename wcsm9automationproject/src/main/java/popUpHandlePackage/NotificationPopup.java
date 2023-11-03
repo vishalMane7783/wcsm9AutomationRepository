@@ -1,9 +1,39 @@
 package popUpHandlePackage;
 
-public class NotificationPopup {
+import java.util.Scanner;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+
+public class NotificationPopup {
+	static WebDriver driver;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter browserValue!!");
+		String browserValue = sc.next();
+		if(browserValue.equalsIgnoreCase("Chrome"))
+		{
+			ChromeOptions co = new ChromeOptions();
+			co.addArguments("--disable-notifications");
+			
+			  driver = new ChromeDriver(co);
+		}
+		else if(browserValue.equalsIgnoreCase("Edge"))
+		{
+			EdgeOptions eo = new EdgeOptions();
+			eo.addArguments("--disable-notifications");
+			
+            driver = new EdgeDriver(eo);
+		}
+		else 
+		{
+			System.out.println("Enter valid BrowserValue!!!");
+		}
+		
+		driver.get("https://www.irctc.co.in/nget/train-search");
 
 	}
 
