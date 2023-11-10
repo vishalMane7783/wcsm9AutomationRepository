@@ -1,5 +1,7 @@
 package actions;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -10,11 +12,11 @@ import org.openqa.selenium.interactions.Actions;
 
 public class ActiTimeDoubleClick {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		WebDriver driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.get("http://desktop-dsetq6l/login.do");
+		driver.get("http://vishal-7783/login.do");
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("input[name='username']")).sendKeys("admin");
 		Thread.sleep(2000);
@@ -32,8 +34,21 @@ public class ActiTimeDoubleClick {
 		 WebElement doubleclick = driver.findElement(By.name("formCustomInterfaceLogo.logo"));
 		Thread.sleep(2000);
 		  Actions act = new Actions(driver);
+		  act.doubleClick(doubleclick).perform();
+		  
+		  Thread.sleep(2000);
+			
+			File file = new File("./autoIT/FileUpload.exe");
+			String absPath = file.getAbsolutePath();
+			
+			Runtime.getRuntime().exec(absPath);
+			Thread.sleep(6000);
+			Runtime.getRuntime().exec(absPath);
+			
+			Thread.sleep(2000);
+		  
 		
-		act.doubleClick(doubleclick).perform();
+		
 		
 
 	}
